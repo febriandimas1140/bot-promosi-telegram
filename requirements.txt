@@ -1,2 +1,2 @@
 telethon
-flask 14
+flask
