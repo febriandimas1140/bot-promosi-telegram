@@ -1,8 +1,11 @@
+import os
 from telethon import TelegramClient, events
+from flask import Flask
+from threading import Thread
 
-# Ganti ini dengan API ID & API HASH dari my.telegram.org
-API_ID = 23030559
-API_HASH = "e1507c98ccd8faf6b7fdb79141d79f83"
+# Ambil dari Railway Environment Variable (lebih aman)
+API_ID = int(os.environ["API_ID"])
+API_HASH = os.environ["API_HASH"]
 
 # Session name terserah, biar nyimpen login
 client = TelegramClient("userbot", API_ID, API_HASH)
@@ -10,17 +13,35 @@ client = TelegramClient("userbot", API_ID, API_HASH)
 # Daftar template
 TEMPLATES = {
     "a": "hit @jelayi 58k 1b fw 🆓💝/🧸 @seleprem testi @bhunnies",
-    "b": "hmu chibi art DISKON t.me/canvasjelay/1197 results @artdumpy",
+    "b": "hmu chibi art DISKON t.me/canvasjelay/1197 results @artdumpy",
     "c": "hmu chibi art & wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy"
 }
 
-# Event handler untuk setiap pesan yang dikirim akun lu sendiri
+# Event handler
 @client.on(events.NewMessage(outgoing=True))
 async def handler(event):
     text = event.raw_text.lower().strip()
     if text in TEMPLATES:
-        await event.edit(TEMPLATES[text])  # Edit pesan jadi template
+        await event.edit(TEMPLATES[text])
 
-print("✅ Userbot jalan, tunggu pesan lu sendiri...")
+print("✅ Userbot jalan di Railway...")
+
+# --- Tambahan Flask biar Railway anggap aktif ---
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "✅ Userbot aktif di Railway!"
+
+def run():
+    app.run(host="0.0.0.0", port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+# ------------------------------------------------
+
+# Jalankan Flask + Bot
+keep_alive()
 client.start()
 client.run_until_disconnected()
