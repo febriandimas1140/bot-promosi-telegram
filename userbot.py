@@ -14,7 +14,7 @@ client = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
 
 # Template pesan
 TEMPLATES = {
-    "a": {"msg": "hit @jelayi 58k 1b fw 🆓💖"},
+    "a": {"msg": "hit @jelayi 58k 1b fw 🆓💝/🧸 @seleprem testi @bhunnies"},
     "b": {"msg": "hit @jelayi testi @bhunnies @seleprem"},
     "c": {"msg": "hit @jelayi chibi art dan wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy"},
     "d": {"msg": "Ukiyo💙Jelay", "img": "foto_bareng_bubub.jpg"}
