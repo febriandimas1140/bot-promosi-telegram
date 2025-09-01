@@ -14,8 +14,7 @@ client = TelegramClient("userbot", API_ID, API_HASH)
 TEMPLATES = {
     "a": "hit @jelayi 58k 1b fw 🆓💝/🧸 @seleprem testi @bhunnies",
     "b": "hit @jelayi testi @bhunnies @seleprem",
-    "c": "hit @jelayi chibi art dan wm t.me/canvasjelay/8
-ready t.me/canvasjelay/1067 results @artdumpy"
+    "c": "hit @jelayi chibi art dan wm t.me/canvasjelay/8ready t.me/canvasjelay/1067 results @artdumpy"
 }
 
 # Event handler
