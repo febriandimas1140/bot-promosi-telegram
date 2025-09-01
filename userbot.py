@@ -17,7 +17,10 @@ TEMPLATES = {
     "a": {"msg": "hit @jelayi 58k 1b fw 🆓💝/🧸 @seleprem testi @bhunnies"},
     "b": {"msg": "hit @jelayi testi @bhunnies @seleprem"},
     "c": {"msg": "hit @jelayi chibi art dan wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy"},
-    "d": {"msg": "hit @jelayi chibi art dan wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy", "img": "WhatsApp Image 2025-09-01 at 22.40.15_b7a7634e.jpg"}  # pastikan file ada di repo
+    "d": {
+        "msg": "hit @jelayi chibi art dan wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy",
+        "img": "WhatsApp Image 2025-09-01 at 22.40.15_b7a7634e.jpg"
+    }
 }
 
 # --- Event handler ---
@@ -28,8 +31,9 @@ async def handler(event):
     if text in TEMPLATES:
         data = TEMPLATES[text]
 
-        if "img" in data:  # kalau ada fotonya (d)
-            await event.respond(file=data["img"], message=data["msg"])
+        if "img" in data:  # kalau trigger d
+            await event.delete()  # hapus trigger "d"
+            await client.send_file(event.chat_id, data["img"], caption=data["msg"])
         else:  # kalau teks doang (a, b, c)
             await event.edit(data["msg"])
 
