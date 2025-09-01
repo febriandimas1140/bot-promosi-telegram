@@ -13,8 +13,9 @@ client = TelegramClient("userbot", API_ID, API_HASH)
 # Daftar template
 TEMPLATES = {
     "a": "hit @jelayi 58k 1b fw 🆓💝/🧸 @seleprem testi @bhunnies",
-    "b": "hmu chibi art DISKON t.me/canvasjelay/1197 results @artdumpy",
-    "c": "hmu chibi art & wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy"
+    "b": "hit @jelayi testi @bhunnies @seleprem",
+    "c": "hit @jelayi chibi art & wm t.me/canvasjelay/8
+ready t.me/canvasjelay/1067 results @artdumpy"
 }
 
 # Event handler
