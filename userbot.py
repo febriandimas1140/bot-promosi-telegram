@@ -1,16 +1,18 @@
 import os
 from telethon import TelegramClient, events
+from telethon.sessions import StringSession
 from flask import Flask
 from threading import Thread
 
-# Ambil dari Railway Environment Variable (lebih aman)
+# Ambil dari Railway Environment Variable
 API_ID = int(os.environ["API_ID"])
 API_HASH = os.environ["API_HASH"]
+STRING_SESSION = os.environ["STRING_SESSION"]
 
-# Session name terserah, biar nyimpen login
-client = TelegramClient("userbot", API_ID, API_HASH)
+# Pakai StringSession biar bisa login sekali doang
+client = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
 
-# Daftar template
+# Template pesan
 TEMPLATES = {
     "a": {"msg": "hit @jelayi 58k 1b fw 🆓💖"},
     "b": {"msg": "hit @jelayi testi @bhunnies @seleprem"},
@@ -18,22 +20,22 @@ TEMPLATES = {
     "d": {"msg": "Ukiyo💙Jelay", "img": "foto_bareng_bubub.jpg"}
 }
 
-# Event handler
+# Event handler (kalo lu sendiri ngetik a/b/c/d)
 @client.on(events.NewMessage(outgoing=True))
 async def handler(event):
     text = event.raw_text.lower().strip()
     if text in TEMPLATES:
-        await event.delete()
+        await event.delete()  # hapus pesan asli
         data = TEMPLATES[text]
 
-        if "img" in data:  # kalau ada fotonya
+        if "img" in data:
             await event.respond(file=data["img"], message=data["msg"])
-        else:  # kalau teks doang
+        else:
             await event.respond(data["msg"])
 
-print("✅ Userbot jalan di Railway...")
+print("✅ Userbot siap jalan di Railway...")
 
-# --- Tambahan Flask biar Railway anggap aktif ---
+# --- Flask biar Railway tetep aktif ---
 app = Flask('')
 
 @app.route('/')
@@ -46,3 +48,8 @@ def run():
 def keep_alive():
     t = Thread(target=run)
     t.start()
+
+# Start bot
+keep_alive()
+client.start()
+client.run_until_disconnected()
