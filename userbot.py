@@ -17,7 +17,7 @@ TEMPLATES = {
     "a": {"msg": "hit @jelayi 58k 1b fw 🆓💝/🧸 @seleprem testi @bhunnies"},
     "b": {"msg": "hit @jelayi testi @bhunnies @seleprem"},
     "c": {"msg": "hit @jelayi chibi art dan wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy"},
-    "d": {"msg": "hit @jelayi chibi art dan wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy", "img": "WhatsApp Image 2025-09-01 at 22.40.15_b7a7634e.jpg"}  # pastikan file ini ada di repo
+    "d": {"msg": "hit @jelayi chibi art dan wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy", "img": "foto_bareng_bubub.jpg"}  # pastikan file ini ada di repo
 }
 
 # Event handler
@@ -25,13 +25,15 @@ TEMPLATES = {
 async def handler(event):
     text = event.raw_text.lower().strip()
     if text in TEMPLATES:
-        await event.delete()  # hapus pesan trigger
         data = TEMPLATES[text]
 
-        if "img" in data:  # kalau ada fotonya
+        if "img" in data:
+            # Edit jadi foto (hapus teks lama, ganti dengan media + caption)
+            await event.delete()
             await event.respond(file=data["img"], message=data["msg"])
-        else:  # kalau teks doang
-            await event.respond(data["msg"])
+        else:
+            # Edit teks langsung
+            await event.edit(data["msg"])
 
 print("✅ Userbot jalan di Railway...")
 
