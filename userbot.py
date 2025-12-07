@@ -20,7 +20,7 @@ TEMPLATES = {
     "d": {"msg": "hit @jelayi chibi art dan wm t.me/canvasjelay/8 ready t.me/canvasjelay/1067 results @artdumpy", "img": "WhatsApp Image 2025-09-01 at 22.40.15_b7a7634e.jpg"},
     "e": {"msg": "Ukiyo🩵Jelay", "img": "foto_bareng_bubub.jpg"},
     "f": {"msg": "woy tidur😡"},
-    "g": {"msg": "canvas jelay lagi bagi bagi DAGET nih yuk buruan cek t.me/canvasjelay/1067"}
+    "g": {"msg": "hit @jelayi chibi art & wm t.me/canvasjelay/8 ych t.me/canvasjelay/709 results @artdumpy"}
 }
 
 #handler
